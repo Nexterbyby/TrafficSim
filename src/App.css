@@ -1,1 +1,17 @@
+html, body {
+    background-color: #505050;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+.header {
+    height: 400px;
+}
+
 

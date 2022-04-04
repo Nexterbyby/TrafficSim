@@ -1,19 +1,11 @@
 import React from 'react'
 import { useState } from 'react';
+import { useBetween } from "use-between";
+import { useShareableState } from "../App.jsx"
 
-
-function useInput({ type }) {
-    const [value, setValue] = useState("");
-    const input = <input value={value} onChange={e => setValue(e.target.value)} type={type} />;
-    return [value, input];
-  }
 
 const InputFields = () => {
-    const [speed, speedInput] = useInput({ type: "number" });
-    const [length, lengthInput] = useInput({ type: "number" });
-    const [cars, carsInput] = useInput({ type: "number" });
-    const [retarded, retardedInput] = useInput({ type: "number" });
-    const [interval, intervalInput] = useInput({ type: "number" });
+    const {speed, speedInput, length, lengthInput, cars, carsInput, retarded, retardedInput, interval, intervalInput } = useBetween(useShareableState);
     return (
         <div className='inputs'>
             <div>speedInput:    {speedInput} = {speed}</div>

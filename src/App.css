@@ -1,17 +1,99 @@
-html, body {
-    background-color: #505050;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
+
+html,
+body {
+    background-color: #000000;
+
 }
 
-.inputs {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 30px;
+.title,
+.subtitle {
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
 }
+
+.subtitle {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ffffff;
+}
+
 
 .header {
     height: 400px;
 }
 
+.input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+input, label {
+    display:flex;
+    flex-direction:column;
+}
 
+.inputfield {
+    position: relative;
+    font-family: inherit;
+    width: 100px;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 1.3rem;
+    color: #fff;
+ 
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.inputfield:placeholder-shown~ .labels {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+}
+
+.inputfield::placeholder {
+    color: transparent;
+}
+
+.labels {
+    position: relative;
+    top: 0;
+    transition: 0.2s;
+    font-size: 1.3rem;
+    color: #9b9b9b;
+}
+
+.inputfield:focus {
+    padding-bottom: 6px;
+
+    border-width: 3px;
+    border-image: linear-gradient(to right, #11998e, #38ef7d);
+    border-image-slice: 1;
+}
+
+.inputfield:focus ~  .labels {
+    position: relative;
+    top: 0;
+    transition: 0.2s;
+    font-size: 1.3rem;
+    color: #11998e;
+    font-weight: 700;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.testSharable {
+    color: #fff;
+}

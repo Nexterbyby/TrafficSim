@@ -7,12 +7,27 @@ import { useShareableState } from "../App.jsx"
 const InputFields = () => {
     const {speed, speedInput, length, lengthInput, cars, carsInput, retarded, retardedInput, interval, intervalInput } = useBetween(useShareableState);
     return (
-        <div className='inputs'>
-            <div>speedInput:    {speedInput} = {speed}</div>
-            <div>lengthInput:   {lengthInput} = {length}</div>
-            <div>carsInput:     {carsInput} = {cars}</div>
-            <div>retardedInput: {retardedInput} = {retarded}</div>
-            <div>intervalInput: {intervalInput} = {interval}</div>
+        <div className='input-container'>
+            <div className='inputs'>
+            {speedInput}
+            <label className='labels' for='speed'>Speed             {/*  = {speed}    */}</label>
+            </div>
+            <div className='inputs'>
+            {lengthInput}
+            <label className='labels' for='length'>Length   {/*  = {length}   */}</label>
+            </div>
+            <div className='inputs'>
+            {carsInput}
+            <label className='labels' for='cars'>Cars        {/*  = {cars}     */}</label>
+            </div>
+            <div className='inputs'>
+            {retardedInput}
+            <label className='labels' for='retarded'>Retarded{/*  = {retarded} */}</label>
+            </div>
+            <div className='inputs'>
+            {intervalInput}
+            <label className='labels' for='interval'>Interval{/*  = {interval} */}</label>
+            </div>
         </div>
     )
 }

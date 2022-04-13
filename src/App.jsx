@@ -1,6 +1,7 @@
 import './App.css';
 import InputFields from './components/InputFields';
 import Test from './components/Test'
+import History from './components/History';
 import { useState } from 'react';
 
 export const useShareableState = () => {
@@ -27,8 +28,9 @@ function App() {
         <div className='header'>
           <h1 className='title'>Traffic Simulator</h1>
           <h2 className='subtitle'>Nagel-Schreckenberg-Model</h2>
-          <Test/>
+          {/* <Test /> */}
         </div>
+        <History />
         <InputFields/>
         
     </div>

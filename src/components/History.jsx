@@ -37,6 +37,7 @@ const History = (props) => {
     let tempImage;
     let tempRoad; 
 
+
     useEffect(() => {
         if (!isActive) {
             return;
@@ -55,7 +56,7 @@ const History = (props) => {
 
         // get context and functions
         ctxRef.current = canvas.getContext("2d");
-        console.log(tempRoad, tempImage);
+        // console.log(tempRoad, tempImage);
     }, [isActive]);
 
     useEffect(() => {
@@ -86,7 +87,8 @@ const History = (props) => {
         update();
         addCarsOnRoad(road.cars_on_road);
         const a = Date.now();
-        setPictureArrayBase([...pictureArrayBase, ...convertCarsOnRoadToPixels()]); // existing base array must be capped as to negate performance penalties.
+        let temp = pictureArrayBase.concat(convertCarsOnRoadToPixels());
+        setPictureArrayBase(temp); // existing base array must be capped as to negate performance penalties.
         const b = Date.now();
         console.log("Performance: ", (b - a), "ms", pictureArrayBase.length, " length");
         // increase height
@@ -116,14 +118,13 @@ const History = (props) => {
 
     const drawImage = () => {
         pictureArrayBase.splice(length * iterationCounter * 4);
-        const clampedArray = Uint8ClampedArray.from(pictureArrayBase); // turns simple mutable array into an array which can be used.
+        let clampedArray = Uint8ClampedArray.from(pictureArrayBase); // turns simple mutable array into an array which can be used.
         try{
             let imageData = new ImageData(clampedArray, length, iterationCounter);
             ctxRef.current.putImageData(imageData, 0, 0);
         }catch (Error){
             console.log("failed");
         }
-        console.log(iterationCounter, road, history, pictureArrayBase);
     }
 
     return(

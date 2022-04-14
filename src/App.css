@@ -100,8 +100,7 @@ input[type=number] {
 
 .history2 {
     height:54vh;
-    overflow: scroll;
-    padding-bottom: 30px;
+    overflow-y: scroll;
     overflow-x: hidden;
     border-bottom: 1px solid #9b9b9b;
     margin-bottom: 10px;

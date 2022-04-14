@@ -115,18 +115,21 @@ const History = (props) => {
         })
         return temp;
     }
-
+    //Get Element for Autoscroll
+    var elem = document.getElementById('historyScroll');
     const drawImage = () => {
         pictureArrayBase.splice(length * iterationCounter * 4);
         let clampedArray = Uint8ClampedArray.from(pictureArrayBase); // turns simple mutable array into an array which can be used.
         try{
             let imageData = new ImageData(clampedArray, length, iterationCounter);
             ctxRef.current.putImageData(imageData, 0, 0);
+            
+            elem.scrollTop = elem.scrollHeight;
         }catch (Error){
             console.log("failed");
         }
     }
-
+    
     return(
         <div className="history">
             <canvas id="pain" ref={canvasRef}></canvas>

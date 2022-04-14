@@ -20,6 +20,7 @@ function useInput({ type, name }) {
   const input = <input className="inputfield" id={name} placeholder={name.charAt(0).toUpperCase() + name.slice(1)} value={value} onChange={e => setValue(e.target.value)} type={type} />;
   return [value, input];
 }
+  
 
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
         <h2 className='subtitle'>Nagel-Schreckenberg-Model</h2>
         {/* <Test /> */}
       </div>
-      <div className="history2">
+      <div id='historyScroll' className="history2">
         <History />
       </div>
       <div className="footer">

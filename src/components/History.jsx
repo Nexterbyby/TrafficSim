@@ -70,18 +70,6 @@ const History = (props) => {
         }
     }, [length, interval, speed, retarded, cars])
 
-    // useEffect(() => { 
-    //     // const newObj = tempImage;  // make full copy, to ignore useEffect trigger. Do it here because async hell. // note to self: JSON doesn't copy functions.
-    //     setImage(tempImage); // maybe point of failure?
-    //     console.log("useEffect: tempImage");
-    // }, [tempImage]);
-
-    // useEffect(() => {
-    //     const newObj = cloneDeep(tempRoad);
-    //     setRoad(newObj);
-    //     console.log("useEffect: tempRoad");
-    // }, [tempRoad]);
-
     useInterval(() => {
         // update object
         update();

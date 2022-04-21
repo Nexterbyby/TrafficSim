@@ -13,39 +13,39 @@ class Road {
         this.p_road_dreaming = p_road_dreaming;
         this.road_size = road_size;
         this.populate();
-        console.log("new Road();")
     }
 
-    populate(){ // legit values
-        let count = 0;
-        let takenIndexes = [];
+    populate(){
+
+        // put cars on the road
+        console.log(this.car_count, this.road_size)
+
+        let availableIndexes = Array.from({length: this.road_size}, (v, i) => i) // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, ..., n]
+
         for(let i = 0; i < this.car_count; i++){
-            while(count < 10000000){
-                let new_index = Math.floor(Math.random() * this.road_size); // does not return greater than 400.
-                if(Math.ceil(Math.random() * 5) === 1 && !takenIndexes.includes(new_index)){
-                    this.cars_on_road.push(new Car(new_index, this.v_road_max));
-                    takenIndexes.push(new_index);
-                    break;
-                }
-                count++;
-            }
+            let newIndex = Math.floor(Math.random() * availableIndexes.length)
+            this.cars_on_road.push(new Car(availableIndexes[newIndex], this.v_road_max))
+            availableIndexes.splice(newIndex, 1)
         }
+
+        console.log(this.cars_on_road)
+
         // sort for indexes on the road
-        let tempRoad = [];
-        for(let i = 0; i < this.cars_on_road.length; i++){
-            let roadIndex = this.cars_on_road[0].index;
-            let arrayIndex = 0;
-            for(let j = 0; j < this.cars_on_road.length; j++){
-                if(roadIndex > this.cars_on_road[j].index){
-                    roadIndex = this.cars_on_road[j].index;
-                    arrayIndex = j;
+        let tempRoad = []
+        for (let i = 0; i < this.car_count; i++) {
+            let minIndex = this.cars_on_road[0].index
+            let minArrIndex = 0
+            for (let j = 0; j < this.cars_on_road.length; j++){
+                let currentIndex = this.cars_on_road[j].index
+                if(currentIndex < minIndex){
+                    minArrIndex = j
+                    minIndex = currentIndex
                 }
             }
-            tempRoad.push(this.cars_on_road[arrayIndex]);
-            this.cars_on_road.splice(arrayIndex, 1);
+            tempRoad.push(this.cars_on_road[minArrIndex])
+            this.cars_on_road.splice(minArrIndex, 1)
         }
-        this.cars_on_road = JSON.parse(JSON.stringify(tempRoad));
-        // return this.cars_on_road;
+        this.cars_on_road = tempRoad
     }
 
     iterate_rules(){
@@ -79,6 +79,7 @@ class Road {
             if(car.index > this.road_size){
                 this.cars_on_road.splice(i, 1);
             }
+            console.log(car.index)
         }
     }
 

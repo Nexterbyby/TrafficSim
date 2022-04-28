@@ -10,11 +10,11 @@ const InputFields = () => {
         <div className='input-container'>
             <div className='inputs'>
             {speedInput}
-            <label className='labels' for='speed'>Max speed of cars            {/*  = {speed}    */}</label>
+            <label className='labels' for='speed'>Max speed of cars in pixel per intervall           {/*  = {speed}    */}</label>
             </div>
             <div className='inputs'>
             {lengthInput}
-            <label className='labels' for='length'>Road length   {/*  = {length}   */}</label>
+            <label className='labels' for='length'>Road length in pixel   {/*  = {length}   */}</label>
             </div>
             <div className='inputs'>
             {carsInput}
@@ -22,7 +22,7 @@ const InputFields = () => {
             </div>
             <div className='inputs'>
             {retardedInput}
-            <label className='labels' for='retarded'>Chance of distracted drivers{/*  = {retarded} */}</label>
+            <label className='labels' for='retarded'>Chance of distracted drivers (1 = 100%){/*  = {retarded} */}</label>
             </div>
             <div className='inputs'>
             {intervalInput}

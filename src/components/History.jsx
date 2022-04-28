@@ -60,12 +60,12 @@ const History = (props) => {
     }, [isActive]);
 
     useEffect(() => {
-        console.log("useEffect");
+        //console.log("useEffect");
         if(length !== "" && interval !== "" && speed !== "" && retarded !== "" && cars !== ""){
             setActive(true);
-            console.log("Sim start.");
+            //console.log("Sim start.");
         }else{
-            console.log("Sim halt.");
+            //console.log("Sim halt.");
             setActive(false);
         }
     }, [length, interval, speed, retarded, cars])
@@ -90,7 +90,7 @@ const History = (props) => {
         let temp = pictureArrayBase.concat(convertCarsOnRoadToPixels());
         setPictureArrayBase(temp); // existing base array must be capped as to negate performance penalties.
         const b = Date.now();
-        console.log("Performance: ", (b - a), "ms", pictureArrayBase.length, " length");
+        //console.log("Performance: ", (b - a), "ms", pictureArrayBase.length, " length");
         // increase height
         setIterationCounter(num => num + 1);
         let canvas = canvasRef.current;

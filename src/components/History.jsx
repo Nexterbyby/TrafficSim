@@ -3,7 +3,6 @@ import { useInterval } from "usehooks-ts";
 import useImage from "../hooks/useImage";
 import useRoad from "../hooks/useRoad";
 import Road from "../model/Objects";
-import { cloneDeep } from "lodash";
 import useHistory from "../hooks/useHistory";
 import { useBetween } from "use-between";
 import { useShareableState } from "../App.jsx"
@@ -56,16 +55,13 @@ const History = (props) => {
 
         // get context and functions
         ctxRef.current = canvas.getContext("2d");
-        // console.log(tempRoad, tempImage);
     }, [isActive]);
 
     useEffect(() => {
         console.log("useEffect");
         if(length !== "" && interval !== "" && speed !== "" && retarded !== "" && cars !== ""){
             setActive(true);
-            console.log("Sim start.");
         }else{
-            console.log("Sim halt.");
             setActive(false);
         }
     }, [length, interval, speed, retarded, cars])
@@ -74,11 +70,8 @@ const History = (props) => {
         // update object
         update();
         addCarsOnRoad(road.cars_on_road);
-        const a = Date.now();
         let temp = pictureArrayBase.concat(convertCarsOnRoadToPixels());
         setPictureArrayBase(temp); // existing base array must be capped as to negate performance penalties.
-        const b = Date.now();
-        console.log("Performance: ", (b - a), "ms", pictureArrayBase.length, " length");
         // increase height
         setIterationCounter(num => num + 1);
         let canvas = canvasRef.current;
@@ -101,17 +94,16 @@ const History = (props) => {
                 temp[tempIndex + 3] = 255; // opacity
             }
         })
+        temp.splice(length * 4);
         return temp;
     }
-    //Get Element for Autoscroll
-    var elem = document.getElementById('historyScroll');
+    // Get Element for Autoscroll
+    let elem = document.getElementById('historyScroll');
     const drawImage = () => {
-        pictureArrayBase.splice(length * iterationCounter * 4);
         let clampedArray = Uint8ClampedArray.from(pictureArrayBase); // turns simple mutable array into an array which can be used.
         try{
             let imageData = new ImageData(clampedArray, length, iterationCounter);
             ctxRef.current.putImageData(imageData, 0, 0);
-            
             elem.scrollTop = elem.scrollHeight;
         }catch (Error){
             console.log("failed");

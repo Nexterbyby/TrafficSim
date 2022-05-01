@@ -4,7 +4,7 @@ const useRoad = initialValue => {
     const [road, setRoad] = useState(initialValue);
 
     const update = () => {
-        road.iterate_rules();
+        road.applyRules();
         road.drive();
     }
 

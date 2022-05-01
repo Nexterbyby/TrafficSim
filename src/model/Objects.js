@@ -12,6 +12,10 @@ class Road {
         this.v_road_max = v_road_max;
         this.p_road_dreaming = p_road_dreaming;
         this.road_size = road_size;
+        this.carsInAvg10ItArr = Array.from({length: 10}, () => 0);
+        this.carsOutAvg10ItArr = Array.from({length: 10}, () => 0);
+        this.carsInAvg10ItNum = 0.0;
+        this.carsOutAvg10ItNum = 0.0;
         this.populate();
     }
 
@@ -48,7 +52,7 @@ class Road {
         this.cars_on_road = tempRoad
     }
 
-    iterate_rules(){
+    applyRules(){
         // Accelerate
         for(let i = 0; i < this.cars_on_road.length; i++){
             let car = this.cars_on_road[i];
@@ -73,14 +77,17 @@ class Road {
     }
 
     drive(){
+        this.#updateRunningAverage();
         for(let i = 0; i < this.cars_on_road.length; i++){
             let car = this.cars_on_road[i];
             car.index = car.index + car.velocity;
             if(car.index > this.road_size){
                 this.cars_on_road.splice(i, 1);
+                this.carsOutAvg10ItArr[0] = 1;
             }
-            console.log(car.index)
         }
+        this.#calculateRunningAverage()
+        console.log(this.carsOutAvg10ItNum)
     }
 
     print_cars(){
@@ -88,6 +95,35 @@ class Road {
             console.log(i + ": ", this.cars_on_road[i].index, this.cars_on_road[i].velocity);
         }
         console.log("");
+    }
+
+    #updateRunningAverage = () => {
+        let len = this.carsInAvg10ItArr.length
+        for (let i = 0; i < len; i++) {
+            if(i === 0) continue
+            this.carsInAvg10ItArr[len - i] = this.carsInAvg10ItArr[len - i - 1]
+        }
+        len = this.carsOutAvg10ItArr.length
+        for (let i = 0; i < len; i++) {
+            if(i === 0) continue
+            this.carsOutAvg10ItArr[len - i] = this.carsOutAvg10ItArr[len - i - 1]
+        }
+        this.carsInAvg10ItArr[0] = 0;
+        this.carsOutAvg10ItArr[0] = 0;
+    }
+
+    #calculateRunningAverage = () => {
+        let avgIn = 0;
+        let avgOut = 0;
+        for (let i = 0; i < this.carsInAvg10ItArr.length; i++) {
+            avgIn += this.carsInAvg10ItArr[i];
+        }
+        for (let i = 0; i < this.carsOutAvg10ItArr.length; i++) {
+            avgOut += this.carsOutAvg10ItArr[i];
+        }
+        console.log(this.carsOutAvg10ItArr)
+        this.carsInAvg10ItNum = avgIn
+        this.carsOutAvg10ItNum = avgOut
     }
 }
 

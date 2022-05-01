@@ -4,7 +4,7 @@ const useRoad = initialValue => {
     const [road, setRoad] = useState(initialValue);
 
     const update = () => {
-        road.iterate_rules();
+        road.applyRules();
         road.drive();
     }
 
@@ -12,7 +12,11 @@ const useRoad = initialValue => {
         road.print_cars();
     }
 
-    return [road, setRoad, update, consoleLog];
+    const newCar = (chance) => {
+        road.newCar(chance)
+    }
+
+    return [road, setRoad, update, consoleLog, newCar];
 }
 
 export default useRoad;

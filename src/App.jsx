@@ -10,8 +10,9 @@ export const useShareableState = () => {
   const [cars, carsInput] = useInput({ type: "number", name: "cars" });
   const [retarded, retardedInput] = useInput({ type: "number", name: "retarded" });
   const [interval, intervalInput] = useInput({ type: "number", name: "interval" });
+  const [newCarChance, newCarChanceInput] = useInput({ type: "number", name: "newCarChance" });
   return {
-    speed, speedInput, length, lengthInput, cars, carsInput, retarded, retardedInput, interval, intervalInput
+    speed, speedInput, length, lengthInput, cars, carsInput, retarded, retardedInput, interval, intervalInput, newCarChance, newCarChanceInput
   }
 }
 

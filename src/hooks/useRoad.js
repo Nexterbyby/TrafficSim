@@ -12,7 +12,11 @@ const useRoad = initialValue => {
         road.print_cars();
     }
 
-    return [road, setRoad, update, consoleLog];
+    const newCar = (chance) => {
+        road.newCar(chance)
+    }
+
+    return [road, setRoad, update, consoleLog, newCar];
 }
 
 export default useRoad;

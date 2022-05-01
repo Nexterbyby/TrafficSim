@@ -12,23 +12,20 @@ const History = (props) => {
     /*
     Todo:
         - Picture base array cleanup. Limit size only to 1'500'000 elements, ...array takes about less than 100ms, maybe remove previous lines?
-        - Check reason for cars wrapping back to start.
-        - Check road.populate(); cars seem to appear only in the first half.
-        - Why does the first line fail ImageData() throws error.
         - Show THROUGHPUT.
-        - Make Button for continuously adding cars.
         - Make interval, retarded, maxSpeed on the fly adjustable.
         - OPTIMIZE (╯°□°）╯︵ ┻━┻
     */
 
-    let { length, interval, speed, retarded, cars } = useBetween(useShareableState);
+    let { length, interval, speed, retarded, cars, newCarChance } = useBetween(useShareableState);
 
     const [iterationCounter, setIterationCounter] = useState(() => { return 0; }); // canvas is also zero
-    const [road, setRoad, update, consoleLog] = useRoad(() => { return {}; });
+    const [road, setRoad, update, consoleLog, newCar] = useRoad(() => { return {}; });
     const [image, setImage, setHeightI, setWidthI] = useImage(() => { return {}; })
     const [history, setHistory, addCarsOnRoad] = useHistory(() => { return []; });
     const [pictureArrayBase, setPictureArrayBase] = useState(() => { return []; });
     const [isActive, setActive] = useState(false);
+    const [insertNewCarCance, setInsertNewCarCance] = useState(() => { return 0; });
     
     const canvasRef = useRef(() => { return null; });
     const ctxRef = useRef(() => { return null; });
@@ -55,6 +52,9 @@ const History = (props) => {
 
         // get context and functions
         ctxRef.current = canvas.getContext("2d");
+
+        // do settings
+        setInsertNewCarCance(newCarChance)
     }, [isActive]);
 
     useEffect(() => {
@@ -79,6 +79,7 @@ const History = (props) => {
         setHeightI(iterationCounter);
         // draw the image
         drawImage();
+        newCar(insertNewCarCance); // inserts sometimes a new car after a round
     }, isActive ? interval : null);
 
 

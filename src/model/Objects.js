@@ -87,7 +87,6 @@ class Road {
             }
         }
         this.#calculateRunningAverage()
-        console.log(this.carsOutAvg10ItNum)
     }
 
     print_cars(){
@@ -124,6 +123,12 @@ class Road {
         console.log(this.carsOutAvg10ItArr)
         this.carsInAvg10ItNum = avgIn
         this.carsOutAvg10ItNum = avgOut
+    }
+
+    newCar = (chance) => {
+        if (Math.random() < chance && this.cars_on_road[0].index !== 0){
+            this.cars_on_road.unshift(new Car(0, this.v_road_max))
+        }
     }
 }
 

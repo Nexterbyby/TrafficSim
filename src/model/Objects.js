@@ -1,3 +1,4 @@
+
 class Car {
     constructor(index, v_car_max){
         this.velocity = Math.ceil(Math.random() * v_car_max);
@@ -120,9 +121,10 @@ class Road {
         for (let i = 0; i < this.carsOutAvg10ItArr.length; i++) {
             avgOut += this.carsOutAvg10ItArr[i];
         }
-        console.log(this.carsOutAvg10ItArr)
+        /* console.log(this.carsOutAvg10ItArr) */
         this.carsInAvg10ItNum = avgIn
         this.carsOutAvg10ItNum = avgOut
+        window.avgOut = avgOut;
     }
 
     newCar = (chance) => {
@@ -130,6 +132,10 @@ class Road {
             this.cars_on_road.unshift(new Car(0, this.v_road_max))
         }
     }
+
+
+
+    
 }
 
 export default Road;

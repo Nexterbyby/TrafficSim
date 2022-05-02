@@ -1,8 +1,11 @@
 import './App.css';
 import InputFields from './components/InputFields';
-import Test from './components/Test'
 import History from './components/History';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useBetween } from 'use-between';
+import Road from './model/Objects';
+
+
 
 export const useShareableState = () => {
   const [speed, speedInput] = useInput({ type: "number", name: "speed" });
@@ -25,15 +28,19 @@ function useInput({ type, name }) {
 
 
 function App() {
+  const [avg, setAvg] = useState(0); 
+  
   return (
     <div className="App">
       <div className='header'>
         <h1 className='title'>Traffic Simulator</h1>
         <h2 className='subtitle'>Nagel-Schreckenberg-Model</h2>
-        {/* <Test /> */}
+        <h3 className='throughput'>Throughput per 10 Interval: {avg}</h3>
+
+
       </div>
       <div id='historyScroll' className="history2">
-        <History />
+        <History avgFunc={setAvg} />
       </div>
       <div className="footer">
         <InputFields />

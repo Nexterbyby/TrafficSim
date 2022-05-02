@@ -7,6 +7,7 @@ import useHistory from "../hooks/useHistory";
 import { useBetween } from "use-between";
 import { useShareableState } from "../App.jsx"
 
+
 const History = (props) => {
 
     /*
@@ -80,6 +81,7 @@ const History = (props) => {
         // draw the image
         drawImage();
         newCar(insertNewCarCance); // inserts sometimes a new car after a round
+        props.avgFunc(road.carsOutAvg10ItNum)
     }, isActive ? interval : null);
 
 
@@ -117,5 +119,11 @@ const History = (props) => {
         </div>
     );
 }
+
+export const useRoad1 = () => {
+    const road = useRoad(() => { return {}; });
+    return road;
+}
+
 
 export default History;

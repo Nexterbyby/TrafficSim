@@ -26,7 +26,7 @@ const InputFields = () => {
             </div>
             <div className='inputs'>
                 {newCarChanceInput}
-                <label className='labels' htmlFor='retarded'>Chance of new Car{/*  = {newCarChance} */}</label>
+                <label className='labels' htmlFor='retarded'>Chance of new Car (1 = 100%){/*  = {newCarChance} */}</label>
             </div>
             <div className='inputs'>
             {intervalInput}

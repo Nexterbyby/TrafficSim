@@ -135,4 +135,6 @@ input[type=number] {
     background: #000000; 
   }
 
-
+.reset {
+    margin-top: 50px;
+}

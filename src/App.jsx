@@ -39,8 +39,6 @@ function useInput({ type, name }) {
   const input = <input className="inputfield" id={name} placeholder={name.charAt(0).toUpperCase() + name.slice(1)} value={value} onChange={setQuery} type={type} />;
   return [value, input];
 }
-  
-
 
 function App() {
   const [avg, setAvg] = useState(0); 
@@ -59,6 +57,8 @@ function App() {
       </div>
       <div className="footer">
         <InputFields />
+        
+        <a href="javascript:window.location.href=window.location.href.split('?')[0]"><button className='reset' >Reset All Values</button></a>
       </div>
     </div>
   );

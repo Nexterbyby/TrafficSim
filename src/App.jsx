@@ -57,7 +57,6 @@ function App() {
       </div>
       <div className="footer">
         <InputFields />
-        
         <a href="javascript:window.location.href=window.location.href.split('?')[0]"><button className='reset' >Reset All Values</button></a>
       </div>
     </div>

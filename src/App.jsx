@@ -19,9 +19,18 @@ export const useShareableState = () => {
   }
 }
 
+const queryStr = window.location.search;
+const usp = new URLSearchParams(queryStr);
+
+
 function useInput({ type, name }) {
   const [value, setValue] = useState("");
-  const input = <input className="inputfield" id={name} placeholder={name.charAt(0).toUpperCase() + name.slice(1)} value={value} onChange={e => setValue(e.target.value)} type={type} />;
+  function setQuery(e) {
+    setValue(e.target.value)
+    usp.set(e.target.id, e.target.value);
+	  window.history.pushState("", "", "?"+ usp.toString());
+  }
+  const input = <input className="inputfield" id={name} placeholder={name.charAt(0).toUpperCase() + name.slice(1)} value={value} onChange={setQuery} type={type} />;
   return [value, input];
 }
   

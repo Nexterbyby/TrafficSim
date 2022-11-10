@@ -25,9 +25,15 @@ const usp = new URLSearchParams(queryStr);
 
 function useInput({ type, name }) {
   const [value, setValue] = useState("");
+  if (usp.get(name)) {
+    setValue(usp.get(name))
+  }
   function setQuery(e) {
     setValue(e.target.value)
     usp.set(e.target.id, e.target.value);
+    if (usp.get(e.target.id)) {
+      setValue(usp.get(e.target.id))
+    }
 	  window.history.pushState("", "", "?"+ usp.toString());
   }
   const input = <input className="inputfield" id={name} placeholder={name.charAt(0).toUpperCase() + name.slice(1)} value={value} onChange={setQuery} type={type} />;
